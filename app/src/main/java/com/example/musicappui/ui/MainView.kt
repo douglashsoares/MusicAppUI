@@ -7,11 +7,15 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.icons.Icons
@@ -44,6 +48,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.musicappui.MainViewModel
 import com.example.musicappui.Screen
+import com.example.musicappui.screensInBottom
 import com.example.musicappui.screensInDrawer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -73,7 +78,40 @@ fun MainView() {
         mutableStateOf(false)
     }
 
+    val bottomBar: @Composable () -> Unit = {
+        if (currentScreen is Screen.DrawerScreen || currentScreen == Screen.BottomScreen.Home) {
+            BottomNavigation(
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .height(100.dp)
+            ) {
+                screensInBottom.forEach { item ->
+                    BottomNavigationItem(
+                        selected = currentRoute == item.bRoute,
+                        onClick = {
+                            controller.navigate(item.bRoute)
+                        },
+                        icon = {
+                            Icon(
+                                contentDescription = item.bTitle,
+                                painter = painterResource(id = item.icon)
+                            )
+                        },
+                        label = {
+                            Text(text = item.bTitle)
+                        },
+                        selectedContentColor = Color.White,
+                        unselectedContentColor = Color.Black
+                    )
+                }
+            }
+        }
+    }
+
     Scaffold(
+        bottomBar = {
+            bottomBar()
+        },
         topBar = {
             TopAppBar(title = {
                 Text(text = title.value)
@@ -180,12 +218,22 @@ fun Navgation(
         startDestination = Screen.DrawerScreen.Account.route,
         modifier = Modifier.padding(pd)
     ) {
+        composable(Screen.BottomScreen.Home.bRoute) {
+            HomeScreen()
+        }
 
-        composable(Screen.DrawerScreen.Account.route){
+        composable(Screen.BottomScreen.Browser.bRoute) {
+            BrowserScreen()
+        }
+
+        composable(Screen.BottomScreen.Library.bRoute) {
+            //Todo add Library Screen
+        }
+        composable(Screen.DrawerScreen.Account.dRoute){
             AccountView()
         }
 
-        composable(Screen.DrawerScreen.Subscription.route){
+        composable(Screen.DrawerScreen.Subscription.route) {
             SubscriptionView()
         }
     }
