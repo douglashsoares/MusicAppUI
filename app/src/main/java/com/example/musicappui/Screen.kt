@@ -19,18 +19,18 @@ sealed class Screen(
         bRoute
     ){
         object Home: BottomScreen(
-            bTitle = "Home",
+            bTitle = "Inicio",
             bRoute = "home",
             icon = R.drawable.ic_home
         )
 
         object Browser: BottomScreen(
-            bTitle = "Browser",
+            bTitle = "Navegador",
             bRoute = "browser",
             icon = R.drawable.ic_browser
         )
         object Library: BottomScreen(
-            bTitle = "Library",
+            bTitle = "Biblioteca",
             bRoute = "library",
             icon = R.drawable.ic_video_library
         )

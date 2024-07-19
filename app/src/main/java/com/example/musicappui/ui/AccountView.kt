@@ -34,13 +34,13 @@ fun AccountView() {
             Row {
                 Icon(
                     imageVector = Icons.Default.AccountCircle,
-                    contentDescription = "Account",
+                    contentDescription = "Conta",
                     modifier = Modifier.padding(8.dp)
                 )
 
                 Column {
-                    Text(text = "Panju Tutorial")
-                    Text(text = "@tutorial.EU")
+                    Text(text = "Douglas")
+                    Text(text = "@douglas.com")
                 }
             }
             IconButton(

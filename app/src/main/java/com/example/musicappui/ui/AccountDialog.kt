@@ -31,7 +31,7 @@ fun AccountDialog(dialogOpen: MutableState<Boolean>) {
                 .fillMaxWidth()
                 .padding(8.dp)
                 .background(MaterialTheme.colors.primarySurface),
-            title = { Text(text = "Add Account") },
+            title = { Text(text = "Adicionar Conta") },
             onDismissRequest = {
                 dialogOpen.value = false
             },
@@ -40,7 +40,7 @@ fun AccountDialog(dialogOpen: MutableState<Boolean>) {
                     onClick = {
                         dialogOpen.value = false
                     }) {
-                    Text(text = "Confirm")
+                    Text(text = "Confirmar")
                 }
             },
             dismissButton = {
@@ -48,7 +48,7 @@ fun AccountDialog(dialogOpen: MutableState<Boolean>) {
                     onClick = {
                         dialogOpen.value = false
                     }) {
-                    Text(text = "Dismiss")
+                    Text(text = "Cancelar")
                 }
             },
             text = {
@@ -72,7 +72,7 @@ fun AccountDialog(dialogOpen: MutableState<Boolean>) {
                         modifier = Modifier
                             .padding(top = 8.dp),
                         label = {
-                            Text(text = "Password")
+                            Text(text = "Senha")
                         }
                     )
                 }
